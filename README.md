@@ -1,23 +1,29 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/11070996/218222011-307873d8-ef32-4740-95ed-be0f13d0574a.png" width="128">
-  <h1 align="center">TinyPNG</h1>
+  <img src="./assets/icon.png" width="128">
+  <h1 align="center">Cosbrowser</h1>
 </p>
 
-Compress selected images with [TinyPNG](https://tinypng.com/).
+Cosbrowser manage with [Tencent cosbrowser nodejs sdk](https://cloud.tencent.com/document/product/436/8629).
 
 ## Setup
 
-Settings your [developer api token](https://tinypng.com/developers).
+Settings your developer Secret Id & Secret Key & TinyPng key.
 
-<img src="https://user-images.githubusercontent.com/11070996/185812420-ca730a35-ece3-4d65-8b7c-da606f220401.png" width="500">
+
 
 ## Commands
 
 | name              | description                                                                                                                                                   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Compress Images` | Compress selected images with TinyPNG.                                                                                                                        |
-| `Resizing Images` | Resizing and compress selected images with TinyPNG. See [here](https://tinypng.com/developers/reference#resizing-images) for more details about the argument. |
+| `View Cosbrowser` | View cosbrowser and then you can upload or download files, preview images and copy custom snippets.                                                                                                                |
+| `Compress & Upload Image` | Compress selected images with TinyPNG. and then upload images. See [here](https://tinypng.com/developers/reference#resizing-images) for more details about the argument. |
+| `Upload History` |  View upload local history data |
 
 ## Screenshot
+![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/view-cosbrowser.png)
 
-https://user-images.githubusercontent.com/11070996/185783961-a6e161c6-d373-4d8f-886e-f561540fe8c4.mp4
+![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/cosbrowser_actions.png)
+
+![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/cosbrowser_compress.png)
+
+![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/cosbrowser_upload_history.png)

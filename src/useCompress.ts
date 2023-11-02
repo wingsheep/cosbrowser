@@ -1,42 +1,26 @@
-import { existsSync } from "fs";
-import { mkdirSync } from "fs";
-import { showToast, Toast, getSelectedFinderItems, getPreferenceValues, showHUD } from "@raycast/api";
-import { statSync, createReadStream, createWriteStream } from "fs";
+import { showToast, Toast, useNavigation, getSelectedFinderItems, getPreferenceValues, showHUD } from "@raycast/api";
+import { existsSync, mkdirSync, statSync, createReadStream, createWriteStream } from "fs";
 import fetch from "node-fetch";
-import { dirname, basename, join } from "path";
+import { Preference, CompressImagesResultItem } from "./types";
 import { compressImageResponseScheme } from "./zodSchema";
-import { Preference } from "./types";
-import { resolveOutputPath } from "./lib/utils";
+import { resolveOutputPath, getDiffFileSizePercent } from "./lib/utils";
+import path, { dirname, basename, join } from "path";
 
-const preferences = getPreferenceValues<Preference>();
-
-export default async function main() {
-  let filePaths: string[];
-
-  try {
-    filePaths = (await getSelectedFinderItems()).map((f) => f.path);
-  } catch (e) {
-    await showToast({
-      style: Toast.Style.Failure,
-      title: "Error",
-      message: e instanceof Error ? e.message : "Could not get the selected Finder items",
-    });
-    return;
-  }
-
+export async function compressImages(filePaths: string[]) {
   const toast = await showToast({
     style: Toast.Style.Animated,
     title: "Compressing images...",
   });
 
+
   try {
     const results = await Promise.all(filePaths.map((filePath) => _compressImage(filePath)));
-    const totalOriginalSize = results.reduce((acc, cur) => acc + cur[0].originalSize, 0);
-    const totalCompressedSize = results.reduce((acc, cur) => acc + cur[0].compressedSize, 0);
+    const totalOriginalSize = results.reduce((acc, cur) => acc + cur.originalSize, 0);
+    const totalCompressedSize = results.reduce((acc, cur) => acc + cur.compressedSize, 0);
 
-    await showHUD(
-      `Compression successful 🎉  (-${(100 - (totalCompressedSize / totalOriginalSize) * 100).toFixed(1)}%)`
-    );
+    toast.style = Toast.Style.Success
+    toast.title = `Compression successful 🎉" (-${getDiffFileSizePercent(totalOriginalSize, totalCompressedSize)}%)`;
+    return results
   } catch (e) {
     toast.style = Toast.Style.Failure;
     toast.title = "Error";
@@ -47,14 +31,10 @@ export default async function main() {
 const _compressImage = async (
   filePath: string
 ): Promise<
-  [
-    {
-      originalSize: number;
-      compressedSize: number;
-    }
-  ]
+  CompressImagesResultItem
 > => {
   const { size } = statSync(filePath);
+  const preferences = getPreferenceValues<Preference>();
 
   const readStream = createReadStream(filePath);
 
@@ -97,10 +77,11 @@ const _compressImage = async (
     outputFileStream.on("finish", resolve);
   });
 
-  return [
-    {
-      originalSize: size,
-      compressedSize: resJson.output.size,
-    },
-  ];
+  return {
+    originalSize: size,
+    compressedSize: resJson.output.size,
+    outputPath,
+    percent: `-${getDiffFileSizePercent(size, resJson.output.size)}%`,
+    ...(path.parse(outputPath)),
+  }
 };

@@ -1,54 +1,102 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "tinypng",
-  "title": "TinyPNG",
+  "name": "cosbrowser",
+  "title": "Cosbrowser",
   "description": "Compress the selected images in Finder with TinyPNG.",
-  "icon": "tinypng-icon.png",
-  "author": "kawamataryo",
+  "icon": "icon.png",
+  "author": "wingsheep",
+  "contributors": [
+    "wingsheep"
+  ],
   "categories": [
     "Developer Tools"
   ],
   "license": "MIT",
   "commands": [
     {
-      "name": "compressImages",
-      "title": "Compress Images",
-      "subtitle": "TinyPNG",
-      "description": "Compress selected images with TinyPNG.",
-      "mode": "no-view"
-    },
-    {
-      "name": "resizingImages",
-      "title": "Resizing Images",
-      "subtitle": "TinyPNG",
-      "description": "Compress and resizing selected images with TinyPNG.",
-      "mode": "no-view",
+      "name": "folder",
+      "title": "View Cosbrowser",
+      "description": "View Bucket Objects with Cosbrowser.",
+      "mode": "view",
       "arguments": [
         {
-          "name": "method",
-          "placeholder": "fit",
+          "name": "queryAlias",
+          "placeholder": "Query",
           "type": "text",
-          "description": "Resize method. Available values are values are 'fit', 'scale', 'cover', 'thumb'",
-          "required": true
-        },
-        {
-          "name": "width",
-          "placeholder": "width(px)",
-          "type": "text",
-          "description": "Width to be resized",
-          "required": false
-        },
-        {
-          "name": "height",
-          "placeholder": "height(px)",
-          "type": "text",
-          "description": "height to be resized",
           "required": false
         }
       ]
+    },
+    {
+      "name": "uploadImages",
+      "title": "Compress & Upload Image",
+      "subtitle": "Cosbrowser",
+      "description": "Upload & Compressed selected images.",
+      "mode": "view"
+    },
+    {
+      "name": "uploadHistory",
+      "title": "Upload History",
+      "subtitle": "Cosbrowser",
+      "description": "Cosbrowser Upload History.",
+      "mode": "view"
     }
   ],
   "preferences": [
+    {
+      "title": "Secret Id",
+      "name": "secretId",
+      "description": "Cosbrowser Secret Id.",
+      "type": "password",
+      "required": true
+    },
+    {
+      "title": "Secret Key",
+      "name": "secretKey",
+      "description": "Cosbrowser Secret Key.",
+      "type": "password",
+      "required": true
+    },
+    {
+      "title": "Bucket",
+      "name": "bucket",
+      "description": "Cosbrowser Bucket.",
+      "type": "textfield",
+      "required": true,
+      "default": "filestore-1254176987"
+    },
+    {
+      "title": "Region",
+      "name": "region",
+      "description": "Cosbrowser Region.",
+      "type": "textfield",
+      "required": true,
+      "default": "ap-shanghai"
+    },
+    {
+      "title": "Server Domain",
+      "name": "serverDomain",
+      "description": "Cosbrowser custom server domain.",
+      "type": "textfield",
+      "required": false,
+      "default": "http://filecdn.hgj.com"
+    },
+    {
+      "title": "Default Prefix",
+      "name": "defaultPrefix",
+      "description": "Cosbrowser default prefix.",
+      "type": "textfield",
+      "required": false,
+      "default": ""
+    },
+    {
+      "title": "Custom Snippets",
+      "name": "customSnippets",
+      "description": "Cosbrowser custom snippets with $url & $fileName.",
+      "type": "textfield",
+      "required": false,
+      "default": "<img :src=`${filePath}$url` alt='$fileName'>"
+    },
     {
       "title": "API Key",
       "name": "apiKey",
@@ -63,23 +111,20 @@
       "type": "textfield",
       "required": true,
       "default": "./compressed-images"
-    },
-    {
-      "title": "Options",
-      "name": "overwrite",
-      "description": "Whether to overwrite the original image file.",
-      "type": "checkbox",
-      "label": "Overwrite Original Image File",
-      "default": false,
-      "required": false
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.39.1",
+    "cos-nodejs-sdk-v5": "^2.12.4",
+    "dayjs": "^1.11.10",
     "node-fetch": "^3.2.10",
+    "uuid": "^9.0.1",
     "zod": "^3.20.6"
   },
   "devDependencies": {
+    "@types/node": "18.8.3",
+    "@types/react": "18.0.9",
+    "@types/uuid": "^9.0.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
