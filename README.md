@@ -61,6 +61,6 @@ Settings your Cosbrowser Secret Id & Secret Key & TinyPng key.
 
 ![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/cosbrowser_actions.png)
 
-![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/cosbrowser_compress.png)
+![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/compress_panel.png)
 
 ![](https://cdn.jsdelivr.net/gh/wingsheep/FigureBed@master/img/cosbrowser_upload_history.png)
