@@ -25,7 +25,7 @@ Currently, you need to clone this repo and install it locally in developer mode.
 You will need to have [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io/) installed.
 
 1. Clone this repo `git clone https://github.com/wingsheep/cosbrowser`
-2. Go to the folder `cd raycast-multi-translate`
+2. Go to the folder `cd cosbrowser`
 3. Install dependencies `pnpm install`
 4. Go to Raycast, run `Import Extension` and select the folder
 
