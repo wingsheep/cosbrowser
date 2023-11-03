@@ -3,12 +3,49 @@
   <h1 align="center">Cosbrowser</h1>
 </p>
 
-Cosbrowser manage with [Tencent cosbrowser nodejs sdk](https://cloud.tencent.com/document/product/436/8629).
+A Raycast extension that manage cosbrowser. Powered by [Tencent cosbrowser nodejs sdk](https://cloud.tencent.com/document/product/436/8629).
+
+
+## Motivation
+
+In daily work, it is often necessary to compress images, upload them to a CDN, and then copy the paths for code development. To simplify this process, this plugin has been developed.
+
+## Features
+
+- Upload & download files
+- Preview images
+- Copy path & snippets
+- Upload history
+- Compress images
+
+## Installation
+
+Currently, you need to clone this repo and install it locally in developer mode.
+
+You will need to have [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io/) installed.
+
+1. Clone this repo `git clone https://github.com/wingsheep/cosbrowser`
+2. Go to the folder `cd raycast-multi-translate`
+3. Install dependencies `pnpm install`
+4. Go to Raycast, run `Import Extension` and select the folder
+
+There is **no plan** to publish to the bloated [raycast/extensions](https://github.com/raycast/extensions) until they make a decentralized publishing system.
 
 ## Setup
 
-Settings your developer Secret Id & Secret Key & TinyPng key.
+Settings your Cosbrowser Secret Id & Secret Key & TinyPng key.
 
+| name            | description | required | default |
+| ----------------- | ----------------- | ----------------- | ----------------- |
+| `Secret Id` | Cosbrowser  Secret Id. | true |
+| `Secret Key` | Cosbrowser  Secret Key. | true |
+| `Bucket` | Cosbrowser Bucket. | true |
+| `Region` | Cosbrowser Region. | true | ap-shanghai
+| `Default Prefix` | Configure the addresses of commonly used folders. | false |
+| `Server Domain` | Configure the domain for generating links. | false | 
+| `Custom Snippets` | Configure custom snippets with $url & $fileName. | false | `<img :src=`${filePath}$url` alt='$fileName'>`
+| `API Key` | Configure tinyPng api key for compress images. | true |
+| `Destination Folder Path` | Configure folder path for save compressed images. | true |
 
 
 ## Commands
