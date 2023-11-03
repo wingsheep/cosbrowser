@@ -76,7 +76,7 @@ export async function uploadFile(key: string, selectedFilePaths?: string[], call
           toast.title = `Upload failed (${err})`
         } else {
           toast.style = Toast.Style.Success
-          toast.title = `Upload finish! (Totally ${files.length}files, ${uploadTotalSize})}) 🎉 `
+          toast.title = `Upload finish! (Totally ${files.length}files, ${uploadTotalSize})) 🎉 `
           const findKey = Object.keys(stashMap).find((key) => data?.Location.includes(key))
           const title = findKey && getFileNameByPath(findKey) || 'unknown'
           const historyUploadItem = {
